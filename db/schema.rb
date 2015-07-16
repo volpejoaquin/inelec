@@ -11,21 +11,79 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707224410) do
+ActiveRecord::Schema.define(version: 20150716233841) do
 
-  create_table "clients", force: true do |t|
+  create_table "categories", force: true do |t|
     t.string   "name"
-    t.string   "contact"
-    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "orders", force: true do |t|
-    t.string   "number"
-    t.datetime "start_date"
-    t.text     "comment"
+  create_table "clients", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.integer  "category_id"
+    t.integer  "postal_code"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "cuit"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "contacts", force: true do |t|
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "charge"
     t.integer  "client_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "diagnostics", force: true do |t|
+    t.datetime "date"
+    t.text     "comments"
+    t.integer  "transformer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "entry_orders", force: true do |t|
+    t.datetime "date"
+    t.integer  "number"
+    t.integer  "client_id"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "exit_orders", force: true do |t|
+    t.datetime "date"
+    t.integer  "number"
+    t.integer  "client_id"
+    t.text     "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "records", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transformers", force: true do |t|
+    t.string   "mark"
+    t.string   "power"
+    t.string   "number"
+    t.integer  "record_id"
+    t.integer  "diagnostic"
+    t.text     "comments"
+    t.integer  "entry_order_id"
+    t.integer  "exit_order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

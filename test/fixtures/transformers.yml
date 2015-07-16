@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mark: MyString
+  power: MyString
+  number: MyString
+  record_id: 1
+  diagnostic: 1
+  comments: MyText
+  entry_order_id: 1
+  exit_order_id: 1
+
+two:
+  mark: MyString
+  power: MyString
+  number: MyString
+  record_id: 1
+  diagnostic: 1
+  comments: MyText
+  entry_order_id: 1
+  exit_order_id: 1

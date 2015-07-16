@@ -1,7 +1,19 @@
 Rails.application.routes.draw do
-  resources :orders
+  resources :categories
+
+  resources :records
 
   resources :clients
+
+  resources :entry_orders
+
+  resources :exit_orders
+
+  resources :transformers
+
+  resources :diagnostics
+
+  resources :contacts
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

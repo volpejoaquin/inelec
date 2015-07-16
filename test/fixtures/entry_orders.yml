@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2015-07-16 20:33:56
+  number: 1
+  client_id: 1
+  comments: MyText
+
+two:
+  date: 2015-07-16 20:33:56
+  number: 1
+  client_id: 1
+  comments: MyText

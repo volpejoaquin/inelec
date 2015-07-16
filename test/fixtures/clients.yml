@@ -2,10 +2,20 @@
 
 one:
   name: MyString
-  contact: MyString
+  address: MyString
+  city: MyString
+  category_id: 1
+  postal_code: 1
   phone: MyString
+  email: MyString
+  cuit: MyString
 
 two:
   name: MyString
-  contact: MyString
+  address: MyString
+  city: MyString
+  category_id: 1
+  postal_code: 1
   phone: MyString
+  email: MyString
+  cuit: MyString

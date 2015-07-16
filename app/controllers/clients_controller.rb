@@ -1,6 +1,8 @@
 class ClientsController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
+  before_filter :find_all_categories, only: [:new, :edit]
+
   # GET /clients
   # GET /clients.json
   def index
@@ -62,6 +64,10 @@ class ClientsController < ApplicationController
   end
 
   private
+    def find_all_categories
+      @categories = Category.all
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_client
       @client = Client.find(params[:id])
@@ -69,6 +75,6 @@ class ClientsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:name, :contact, :phone)
+      params.require(:client).permit(:name, :address, :city, :category_id, :postal_code, :phone, :email, :cuit)
     end
 end

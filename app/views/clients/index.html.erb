@@ -7,8 +7,13 @@
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:contact) %></th>
+      <th><%= model_class.human_attribute_name(:address) %></th>
+      <th><%= model_class.human_attribute_name(:city) %></th>
+      <th><%= model_class.human_attribute_name(:categoryId) %></th>
+      <th><%= model_class.human_attribute_name(:postalCode) %></th>
       <th><%= model_class.human_attribute_name(:phone) %></th>
+      <th><%= model_class.human_attribute_name(:email) %></th>
+      <th><%= model_class.human_attribute_name(:cuit) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -18,13 +23,15 @@
       <tr>
         <td><%= link_to client.id, client_path(client) %></td>
         <td><%= client.name %></td>
-        <td><%= client.contact %></td>
+        <td><%= client.address %></td>
+        <td><%= client.city %></td>
+        <td><%= client.category.name %></td>
+        <td><%= client.postal_code %></td>
         <td><%= client.phone %></td>
+        <td><%= client.email %></td>
+        <td><%= client.cuit %></td>
         <td><%=l client.created_at %></td>
         <td>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      client_path(client),
-                      :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_client_path(client), :class => 'btn btn-default btn-xs' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

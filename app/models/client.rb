@@ -1,3 +1,4 @@
 class Client < ActiveRecord::Base
-  has_many :orders
+  has_many :contacts
+  belongs_to :category
 end

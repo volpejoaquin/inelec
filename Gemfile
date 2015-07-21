@@ -43,3 +43,6 @@ gem "font-awesome-rails"
 
 # Use bootstrap
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+# Use byebug
+gem 'byebug'

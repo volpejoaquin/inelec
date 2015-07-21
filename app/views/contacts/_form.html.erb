@@ -51,11 +51,11 @@
     <%=f.error_span(:charge) %>
   </div>
   <div class="form-group">
-    <%= f.label :clientId, :class => 'control-label col-lg-2' %>
+   <%= f.label :client_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :clientId, :class => 'form-control' %>
+      <%= f.select(:client_id, @clients.collect {|d| [d.name, d.id] }, {}, { :class => 'form-control' })%>
     </div>
-    <%=f.error_span(:clientId) %>
+    <%=f.error_span(:client_id) %>
   </div>
 
   <div class="form-group">

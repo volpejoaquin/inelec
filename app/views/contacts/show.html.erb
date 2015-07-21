@@ -14,8 +14,8 @@
   <dd><%= @contact.email %></dd>
   <dt><strong><%= model_class.human_attribute_name(:charge) %>:</strong></dt>
   <dd><%= @contact.charge %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:clientId) %>:</strong></dt>
-  <dd><%= @contact.clientId %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:client_id) %>:</strong></dt>
+  <dd><%= @contact.client.name %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

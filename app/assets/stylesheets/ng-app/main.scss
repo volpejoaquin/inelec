@@ -1,0 +1,126 @@
+$icon-font-path: "bootstrap-sass-official/assets/fonts/bootstrap/"; // Fuck you bower <-> rails
+@import "bootstrap";
+@import "bootstrap/theme";
+@import "font-awesome";
+@import "variables";
+@import "colors";
+
+/**
+ * Structure
+ */
+body {
+  padding-top: 70px;
+  padding-bottom: 70px;
+}
+
+/**
+ * Elements
+ */
+.text-ellipsis {
+  text-overflow: ellipsis;
+  /* Required for text-overflow to do anything */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/**
+ * Navbar
+ */
+.navbar {
+  .navbar-brand {
+    padding-top: 5px;
+    padding-bottom: 0;
+  }
+}
+
+/**
+ * Tables
+ */
+table.table {
+  &.nospace {
+    margin: 0;
+  }
+
+  th, td {
+    overflow: hidden;
+    white-space: nowrap;
+
+    &.wide {
+      max-width: 200px;
+    }
+  }
+}
+
+/**
+ * Pagination
+ */
+.pagination {
+  background: #f1f1f1;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 1em;
+  cursor: default;
+  width: 100%;
+
+  a, span {
+    padding: 0.2em 0.3em;
+  }
+  .disabled {
+    color: #aaaaaa;
+  }
+  .current {
+    font-style: normal;
+    font-weight: bold;
+    background-color: darken(#f1f1f1, 20);
+    display: inline-block;
+    width: 1.4em;
+    height: 1.4em;
+    line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+    text-shadow: rgba(white, .8) 1px 1px 1px;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+
+    &:hover, &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+/**
+ * Sorting
+ */
+.table th .current {
+  font-weight: bold;
+
+  &::before {
+    margin-right: 10px;
+    @extend .btn-xs;
+  }
+}
+
+.table th .asc {
+  @extend .glyphicon;
+  @extend .glyphicon-sort-by-alphabet;
+}
+
+.table th .desc {
+  @extend .glyphicon;
+  @extend .glyphicon-sort-by-alphabet-alt;
+}
+
+/**
+ * Forms
+ */
+.form {
+  .form-group {
+    [required]::after {
+      content: "*";
+      color: red;
+    }
+  }
+}

@@ -1,25 +1,34 @@
 Rails.application.routes.draw do
-  resources :categories
+  with_options defaults: { format: :json } do
+    namespace :api do
 
-  resources :records
+      resources :clients, except: :destroy do
+        # resources :visits, except: :destroy
+        # resources :contact_people
 
-  resources :clients
+        # collection do
+        #   get 'status'
+        #   get 'client_types'
+        # end
 
-  resources :entry_orders
-
-  resources :exit_orders
-
-  resources :transformers
-
-  resources :diagnostics
-
-  resources :contacts
+        # member do
+        #   post 'add_member'
+        #   get 'potential_members'
+        #   post 'add_company'
+        #   get 'potential_companies'
+        #   post 'toggle_has_the_system'
+        # end
+      end
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  # root 'home#index'
+  root 'application#index'
+  get '*path' => 'application#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

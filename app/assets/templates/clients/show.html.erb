@@ -1,0 +1,135 @@
+<h1>
+  <span class="glyphicon glyphicon-home" aria-hidden="true" ng-if="!!client.members.length"></span>
+  {{client.name}}
+  <a ui-sref="clients.edit({ id: client.id })">
+    <small class="glyphicon glyphicon-pencil orange"></small>
+  </a>
+</h1>
+<hr/>
+
+<div class="row">
+  <div class="col-xs-6">
+    <p>
+      <strong>Address:</strong>
+      {{client.address}}
+    </p>
+
+    <p>
+      <strong>Phone:</strong>
+      {{client.phone}}
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      {{client.email}}
+    </p>
+
+    <p>
+      <strong>Website:</strong>
+      {{client.website}}
+    </p>
+
+    <p>
+      <strong>Type:</strong>
+      {{client.client_type.name}}
+    </p>
+
+    <p>
+      <strong>Status:</strong>
+      {{client.status.name}}
+    </p>
+
+    <p>
+      <strong>Has the system:</strong>
+      <span class="glyphicon glyphicon-{{client.has_the_system ? 'ok green' : 'remove red' }}" aria-hidden="true"></span>
+    </p>
+
+    <p>
+      <strong>Next visit:</strong>
+      {{client.next_visit}}
+    </p>
+
+    <p>
+      <strong>Observations:</strong>
+      {{client.observations}}
+    </p>
+
+    <p>
+      <strong>Pending Woopa:</strong>
+      {{client.pending_woopa}}
+    </p>
+
+    <p>
+      <strong>Pending Client:</strong>
+      {{client.pending_client}}
+    </p>
+
+    <p>
+      <strong>Number of visits:</strong>
+      {{client.number_of_visits}}
+    </p>
+
+    <p>
+      <strong>Last visit:</strong>
+      {{client.last_visit.visit_date}}
+    </p>
+  </div>
+
+  <div class="col-xs-6">
+    <div ng-show="!client.companies.length">
+      <h4>Organization Members</h4>
+      <ul>
+        <li ng-repeat="member in membersPagination.pagedItems">
+          <span class="glyphicon glyphicon-{{member.has_the_system ? 'ok green' : 'remove red' }}" aria-hidden="true" ng-click="setHasTheSystemForMember(member)" data-title="Click to toggle!" bs-tooltip></span>
+          <a ui-sref="clients.show({ id: member.id })">
+            {{member.name}}
+          </a>
+        </li>
+      </ul>
+      <pagination total-items="membersPagination.totalItems" items-per-page="membersPagination.itemsPerPage" ng-model="membersPagination.currentPage" ng-change="membersPagination.pageChanged()" ng-show="membersPagination.itemsPerPage < membersPagination.totalItems"></pagination>
+      <form name="add_member_form" novalidate class="form member-form form-inline" ng-submit="addMember(member)">
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="member" bs-options="member as member.name for member in searchMembers($viewValue)" placeholder="Search for member" bs-typeahead required>
+        </div>
+        <div class="form-group">
+          <input type="checkbox" ng-model="client.has_the_system" name="has_the_system"/>
+          <label for="has_the_system">Has the system?</label>
+        </div>
+        <div class="actions form-group">
+          <input type="submit" class="btn btn-success" value="Add" ng-disabled="!add_member_form.$valid"/>
+        </div>
+      </form>
+    </div>
+
+    <hr ng-if="!client.companies.length"/>
+
+    <div ng-show="!client.members.length">
+      <h4>Belongs to</h4>
+      <ul>
+        <li ng-repeat="company in companiesPagination.pagedItems">
+          <span class="glyphicon glyphicon-{{company.has_the_system  ? 'ok green' : 'remove red' }}" aria-hidden="true" ng-click="setHasTheSystemForCompany(company)" data-title="Click to toggle!" bs-tooltip></span>
+          <a ui-sref="clients.show({ id: company.id })">
+            {{company.name}}
+          </a>
+        </li>
+      </ul>
+      <pagination total-items="companiesPagination.totalItems" items-per-page="companiesPagination.itemsPerPage" ng-model="companiesPagination.currentPage" ng-change="companiesPagination.pageChanged()" ng-show="companiesPagination.itemsPerPage < companiesPagination.totalItems"></pagination>
+      <form name="add_company_form" novalidate class="form company-form form-inline" ng-submit="addCompany(company)">
+        <div class="form-group">
+          <input type="text" class="form-control" ng-model="company" bs-options="company as company.name for company in searchCompanies($viewValue)" placeholder="Search for company" bs-typeahead required>
+        </div>
+        <div class="actions form-group">
+          <input type="submit" class="btn btn-success" value="Add" ng-disabled="!add_company_form.$valid"/>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<hr/>
+<div bs-tabs>
+  <div ui-view="visits" title="Visits" bs-pane>
+  </div>
+  <div ui-view="contact-people" title="Contacts" bs-pane>
+  </div>
+</div>

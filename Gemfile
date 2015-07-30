@@ -46,3 +46,10 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 
 # Use byebug
 gem 'byebug'
+
+# Bower and angularJS stuff
+gem 'bower-rails'
+gem 'angular-rails-templates'
+
+# CSRF validation for angularJS calls
+gem 'angular_rails_csrf'

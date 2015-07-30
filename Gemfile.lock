@@ -37,7 +37,14 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    angular-rails-templates (0.2.0)
+      railties (>= 3.1)
+      sprockets (~> 2)
+      tilt
+    angular_rails_csrf (1.0.4)
+      rails (>= 3, < 5)
     arel (5.0.1.20140414130214)
+    bower-rails (0.10.0)
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
@@ -131,6 +138,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angular-rails-templates
+  angular_rails_csrf
+  bower-rails
   byebug
   coffee-rails (~> 4.0.0)
   font-awesome-rails

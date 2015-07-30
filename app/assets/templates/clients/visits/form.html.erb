@@ -1,0 +1,48 @@
+<div ng-controller="VisitQuickAddCtrl">
+  <h4>New visit</h4>
+
+  <form name="quick_add_visit_form" novalidate class="form visit-form" ng-submit="submit(visit)" quick-form show-required="false">
+    <div class="form-group has-feedback" ng-class="{ 'has-error' : (quick_add_visit_form.$submitted || quick_add_visit_form.visit_date.$touched) && quick_add_visit_form.visit_date.$error.required }">
+      <input type="text" class="form-control" ng-model="visit.visit_date" name="visit_date" placeholder="Select date" bs-datepicker data-autoclose="1" required>
+      <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-class="{ 'hidden' : !((quick_add_visit_form.$submitted ||  quick_add_visit_form.visit_date.$touched) && quick_add_visit_form.visit_date.$error.required) }"></span>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-default" ng-model="visit.visit_type_id" bs-options="visit_type.id as visit_type.name for visit_type in visit_types" placeholder="Select a visit type" bs-select required>
+        <span class="caret"></span>
+      </button>
+    </div>
+    <div class="form-group">
+      <button type="button" class="btn btn-default" ng-model="visit.contact_person_id" bs-options="contact_person.id as contact_person.name for contact_person in contact_people" placeholder="Select a contact person" bs-select>
+        <span class="caret"></span>
+      </button>
+    </div>
+
+    <div class="form-group">
+      <textarea class="form-control" placeholder="Observations" ng-model="visit.observations" required></textarea>
+    </div>
+
+    <h4>Client updates</h4>
+
+    <div class="form-group">
+      <button type="button" class="btn btn-default" ng-model="visit.client_attributes.status_id" bs-options="status.id as status.name for status in statuses" placeholder="Client status" bs-select>
+        <span class="caret"></span>
+      </button>
+    </div>
+    <div class="form-group">
+      <label>Pending client</label>
+      <textarea class="form-control" placeholder="Pending client" ng-model="visit.client_attributes.pending_client"></textarea>
+    </div>
+    <div class="form-group">
+      <label>Pending woopa</label>
+      <textarea class="form-control" placeholder="Pending woopa" ng-model="visit.client_attributes.pending_woopa"></textarea>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="next_visit">Next visit</label>
+      <input type="text" class="form-control" ng-model="visit.client_attributes.next_visit" name="next_visit" bs-datepicker data-autoclose="1">
+    </div>
+
+    <div class="actions form-group">
+      <input type="submit" class="btn btn-success" value="Add visit" ng-disabled="!quick_add_visit_form.$valid"/>
+    </div>
+  </form>
+</div>

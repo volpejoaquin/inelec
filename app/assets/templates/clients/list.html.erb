@@ -1,0 +1,63 @@
+<h1>Clients</h1>
+
+<div class="row">
+  <div class="col-xs-12">
+    <form name="client_quick_search" novalidate class="form quick-search-form form-inline">
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="$parent.query" ng-model-options="{ debounce: 100 }"/>
+      </div>
+    </form>
+    <table class="table nospace table-striped">
+      <thead>
+        <tr>
+          <th colspan="1" class="text-center"><a href="" ng-click="reverse=!reverse;order('has_the_system', reverse)"><span class="glyphicon glyphicon-ok green" aria-hidden="true"></a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('name', reverse)">Name</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('address', reverse)">Address</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('phone', reverse)">Phone</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('type.name', reverse)">Type</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('status.name', reverse)">Status</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('last_visit.visit_date', reverse)">Last visit</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('next_visit', reverse)">Next visit</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('has_observations', reverse)">Obs</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('has_pending_woopa', reverse)">PW</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('has_pending_client', reverse)">PC</a></th>
+          <th class="text-center" colspan="1"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="client in pagination.pagedItems">
+          <td class="text-center"><span class="glyphicon" ng-class="{ 'glyphicon-ok green' : !!client.has_the_system, 'glyphicon-remove red' : !client.has_the_system }" aria-hidden="true"></span></td>
+          <td>
+            <a ui-sref="clients.show({ id: client.id })">
+              <span class="glyphicon glyphicon-home" aria-hidden="true" ng-if="!!client.members.length"></span>
+              {{client.name}}
+            </a>
+          </td>
+          <td>{{client.address}}</td>
+          <td>{{client.phone}}</td>
+          <td>{{client.client_type.name}}</td>
+          <td>{{client.status.name}}</td>
+          <td>{{client.last_visit.visit_date}}</td>
+          <td>{{client.next_visit}}</td>
+          <td class="text-center"><span class="glyphicon glyphicon-info-sign yellow" aria-hidden="true" ng-show="client.has_observations"></span></td>
+          <td class="text-center"><span class="glyphicon glyphicon-info-sign yellow" aria-hidden="true" ng-show="client.has_pending_woopa"></span></td>
+          <td class="text-center"><span class="glyphicon glyphicon-info-sign yellow" aria-hidden="true" ng-show="client.has_pending_client"></span></td>
+          <td class="text-center">
+            <a ui-sref="clients.edit({ id: client.id })">
+              <span class="glyphicon glyphicon-pencil orange" aria-hidden="true"></span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <pagination total-items="pagination.totalItems" items-per-page="pagination.itemsPerPage" ng-model="pagination.currentPage" ng-change="pagination.pageChanged()" ng-if="pagination.itemsPerPage < pagination.totalItems"></pagination>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-xs-12">
+    <h4>Quick add</h4>
+    <div ui-view="quick-add"></div>
+  </div>
+</div>

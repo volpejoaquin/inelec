@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-xs-12">
+    <table class="table nospace table-striped">
+      <thead>
+        <tr>
+          <th><a href="" ng-click="reverse=!reverse;order('name', reverse)">Name</a></th>
+          <th>Phone</th>
+          <th>Position</th>
+          <th class="text-center">Decision Maker</th>
+          <th class="text-center" colspan="1"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="contact in pagination.pagedItems">
+          <td>{{contact.name}}</td>
+          <td>{{contact.phone}}</td>
+          <td>{{contact.position}}</td>
+          <td class="text-center"><span class="glyphicon" ng-class="contact.decision_maker ? 'glyphicon-ok green' : 'glyphicon-remove red'" aria-hidden="true"></span></td>
+          <td class="text-center">
+            <a ui-sref="clients.show.contact_people.show({ id: client.id, person_id: contact.id })">
+              <span class="glyphicon glyphicon-pencil orange" aria-hidden="true"></span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <pagination total-items="pagination.totalItems" items-per-page="pagination.itemsPerPage" ng-model="pagination.currentPage" ng-change="pagination.pageChanged()" ng-if="pagination.itemsPerPage < pagination.totalItems"></pagination>
+  </div>
+</div>
+<hr/>
+<div class="row">
+  <div class="col-xs-12">
+    <form name="add_contact_form" novalidate class="form contact-form form-inline" ng-controller="ContactAddCtrl" ng-submit="saveContact(contact)">
+      <div class="form-group has-feedback" ng-class="{ 'has-error' : (add_contact_form.$submitted || add_contact_form.name.$touched) && add_contact_form.name.$error.required }">
+        <input type="text" class="form-control" placeholder="Name" ng-model="contact.name" name="name" required/>
+        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-class="{ 'hidden' : !((add_contact_form.$submitted ||  add_contact_form.name.$touched) && add_contact_form.name.$error.required) }"></span>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Phone" ng-model="contact.phone" name="phone"/>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Position" ng-model="contact.position" name="phone"/>
+      </div>
+      <div class="form-group">
+        <input type="checkbox" ng-model="contact.decision_maker" name="decision_maker"/>
+        <label for="decision_maker">Decision maker?</label>
+      </div>
+      <div class="actions form-group">
+        <input type="submit" class="btn btn-success" value="Add" ng-disabled="!add_contact_form.$valid"/>
+      </div>
+    </form>
+  </div>
+</div>

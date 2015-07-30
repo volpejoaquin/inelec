@@ -19,5 +19,12 @@ module InelecRuby
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    # Add additional asset (from bower)
+    config.assets.paths << Rails.root.join("lib","assets","bower_components","bootstrap-sass-official","assets")
+    config.assets.paths << Rails.root.join("lib","assets","bower_components","bootstrap-sass-official","assets","stylesheets")
+    config.assets.paths << Rails.root.join("lib","assets","bower_components","bootstrap-sass-official","assets", "fonts")
+    config.assets.paths << Rails.root.join("lib","assets","bower_components","components-font-awesome","css")
+    config.assets.paths << Rails.root.join("lib","assets","bower_components","components-font-awesome","fonts")
   end
 end

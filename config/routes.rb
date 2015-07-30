@@ -6,10 +6,9 @@ Rails.application.routes.draw do
         # resources :visits, except: :destroy
         # resources :contact_people
 
-        # collection do
-        #   get 'status'
-        #   get 'client_types'
-        # end
+        collection do
+          get 'categories'
+        end
 
         # member do
         #   post 'add_member'

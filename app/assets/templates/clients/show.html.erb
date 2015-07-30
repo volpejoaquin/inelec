@@ -10,12 +10,12 @@
 <div class="row">
   <div class="col-xs-6">
     <p>
-      <strong>Address:</strong>
-      {{client.address}}
+      <strong>Direccion:</strong>
+      {{client.address_ext}}
     </p>
 
     <p>
-      <strong>Phone:</strong>
+      <strong>Telefono:</strong>
       {{client.phone}}
     </p>
 
@@ -25,53 +25,8 @@
     </p>
 
     <p>
-      <strong>Website:</strong>
-      {{client.website}}
-    </p>
-
-    <p>
-      <strong>Type:</strong>
-      {{client.client_type.name}}
-    </p>
-
-    <p>
-      <strong>Status:</strong>
-      {{client.status.name}}
-    </p>
-
-    <p>
-      <strong>Has the system:</strong>
-      <span class="glyphicon glyphicon-{{client.has_the_system ? 'ok green' : 'remove red' }}" aria-hidden="true"></span>
-    </p>
-
-    <p>
-      <strong>Next visit:</strong>
-      {{client.next_visit}}
-    </p>
-
-    <p>
-      <strong>Observations:</strong>
-      {{client.observations}}
-    </p>
-
-    <p>
-      <strong>Pending Woopa:</strong>
-      {{client.pending_woopa}}
-    </p>
-
-    <p>
-      <strong>Pending Client:</strong>
-      {{client.pending_client}}
-    </p>
-
-    <p>
-      <strong>Number of visits:</strong>
-      {{client.number_of_visits}}
-    </p>
-
-    <p>
-      <strong>Last visit:</strong>
-      {{client.last_visit.visit_date}}
+      <strong>Categoria:</strong>
+      {{client.category.name}}
     </p>
   </div>
 
@@ -128,8 +83,8 @@
 
 <hr/>
 <div bs-tabs>
-  <div ui-view="visits" title="Visits" bs-pane>
+  <!-- <div ui-view="visits" title="Visits" bs-pane>
   </div>
   <div ui-view="contact-people" title="Contacts" bs-pane>
-  </div>
+  </div> -->
 </div>

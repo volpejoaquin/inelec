@@ -1,49 +1,30 @@
 <form name="quick_add_user_form" novalidate class="form client-form" ng-submit="submit(client)" quick-form show-required="false">
   <div class="form-group has-feedback" ng-class="{ 'has-error' : (quick_add_user_form.$submitted || quick_add_user_form.name.$touched) && quick_add_user_form.name.$error.required }">
-    <input type="text" class="form-control" placeholder="Name" ng-model="client.name" name="name" required/>
+    <input type="text" class="form-control" placeholder="Nombre" ng-model="client.name" name="name" required/>
     <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-class="{ 'hidden' : !((quick_add_user_form.$submitted ||  quick_add_user_form.name.$touched) && quick_add_user_form.name.$error.required) }"></span>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Address" ng-model="client.address"/>
+    <input type="text" class="form-control" placeholder="Ciudad" ng-model="client.city"/>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Phone" ng-model="client.phone"/>
+    <input type="text" class="form-control" placeholder="Direccion" ng-model="client.address"/>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Email" ng-model="client.email"/>
+    <input type="text" class="form-control" placeholder="Codigo postal" ng-model="client.postal_code"/>
   </div>
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Website" ng-model="client.website"/>
+    <input type="text" class="form-control" placeholder="Telefono" ng-model="client.phone"/>
   </div>
   <div class="form-group">
-    <button type="button" class="btn btn-default" ng-model="client.client_type_id" bs-options="client_type.id as client_type.name for client_type in client_types" placeholder="Select a client type" bs-select required>
+    <input type="text" class="form-control" placeholder="Correo electronico" ng-model="client.email"/>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="CUIT" ng-model="client.cuit"/>
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-default" ng-model="client.category_id" bs-options="client_category.id as client_category.name for client_category in client_categories" placeholder="Selecciona la categoria" bs-select>
       <span class="caret"></span>
     </button>
-  </div>
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Number of appointments" ng-model="client.number_of_appointments"/>
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" placeholder="Observations" ng-model="client.observations"></textarea>
-  </div>
-  <div class="form-group">
-    <button type="button" class="btn btn-default" ng-model="client.status_id" bs-options="status.id as status.name for status in statuses" placeholder="Select status" bs-select>
-      <span class="caret"></span>
-    </button>
-  </div>
-  <div class="form-group">
-    <label class="control-label" for="next_visit">Next visit</label>
-    <input type="text" class="form-control" ng-model="client.next_visit" name="next_visit" bs-datepicker data-autoclose="1">
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" placeholder="Pending Woopa" ng-model="client.pending_woopa"></textarea>
-  </div>
-  <div class="form-group">
-    <textarea class="form-control" placeholder="Pending Client" ng-model="client.pending_client"></textarea>
-  </div>
-  <div class="form-group">
-    <input type="checkbox" ng-model="client.has_the_system" name="has_the_system"/>
-    <label for="has_the_system">Has the system?</label>
   </div>
   <div class="actions form-group">
     <input type="submit" class="btn btn-success" value="Add client" ng-disabled="!quick_add_user_form.$valid"/>

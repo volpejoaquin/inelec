@@ -10,39 +10,37 @@
     <table class="table nospace table-striped">
       <thead>
         <tr>
-          <th colspan="1" class="text-center"><a href="" ng-click="reverse=!reverse;order('has_the_system', reverse)"><span class="glyphicon glyphicon-ok green" aria-hidden="true"></a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('name', reverse)">Name</a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('address', reverse)">Address</a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('phone', reverse)">Phone</a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('type.name', reverse)">Type</a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('status.name', reverse)">Status</a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('last_visit.visit_date', reverse)">Last visit</a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('next_visit', reverse)">Next visit</a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('has_observations', reverse)">Obs</a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('has_pending_woopa', reverse)">PW</a></th>
-          <th><a href="" ng-click="reverse=!reverse;order('has_pending_client', reverse)">PC</a></th>
+          <th colspan="1" class="text-center">
+            <a href="" ng-click="reverse=!reverse;order('has_the_system', reverse)">
+              <span class="glyphicon glyphicon-ok green" aria-hidden="true">
+              </span>
+            </a>
+          </th>
+          <th><a href="" ng-click="reverse=!reverse;order('name', reverse)">Nombre</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('address', reverse)">Direccion</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('phone', reverse)">Telefono</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('cuit', reverse)">CUIT</a></th>
+          <th><a href="" ng-click="reverse=!reverse;order('email', reverse)">Correo electronico</a></th>
           <th class="text-center" colspan="1"></th>
         </tr>
       </thead>
 
       <tbody>
         <tr ng-repeat="client in pagination.pagedItems">
-          <td class="text-center"><span class="glyphicon" ng-class="{ 'glyphicon-ok green' : !!client.has_the_system, 'glyphicon-remove red' : !client.has_the_system }" aria-hidden="true"></span></td>
+          <td class="text-center">
+            <span class="glyphicon" ng-class="{ 'glyphicon-ok green' : !!client.has_the_system, 'glyphicon-remove red' : !client.has_the_system }" aria-hidden="true">
+            </span>
+          </td>
           <td>
             <a ui-sref="clients.show({ id: client.id })">
               <span class="glyphicon glyphicon-home" aria-hidden="true" ng-if="!!client.members.length"></span>
               {{client.name}}
             </a>
           </td>
-          <td>{{client.address}}</td>
+          <td>{{client.address_ext}}</td>
           <td>{{client.phone}}</td>
-          <td>{{client.client_type.name}}</td>
-          <td>{{client.status.name}}</td>
-          <td>{{client.last_visit.visit_date}}</td>
-          <td>{{client.next_visit}}</td>
-          <td class="text-center"><span class="glyphicon glyphicon-info-sign yellow" aria-hidden="true" ng-show="client.has_observations"></span></td>
-          <td class="text-center"><span class="glyphicon glyphicon-info-sign yellow" aria-hidden="true" ng-show="client.has_pending_woopa"></span></td>
-          <td class="text-center"><span class="glyphicon glyphicon-info-sign yellow" aria-hidden="true" ng-show="client.has_pending_client"></span></td>
+          <td>{{client.cuit}}</td>
+          <td>{{client.email}}</td>
           <td class="text-center">
             <a ui-sref="clients.edit({ id: client.id })">
               <span class="glyphicon glyphicon-pencil orange" aria-hidden="true"></span>

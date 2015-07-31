@@ -2,12 +2,11 @@ class ClientDecorator < Draper::Decorator
   delegate_all
 
   def address_ext
-    if object.postal_code?
-      @city_ext = object.city + " (#{object.postal_code})"
-    else
-      @city_ext = object.city
-    end
+    @address = object.address? ? object.address : ""
+    @city = object.city? ? object.city : ""
 
-    [object.address, @city_ext].reject(&:empty?).join(', ')
+    @city_ext = object.postal_code? ? @city + " (#{object.postal_code})" : @city
+
+    [@address, @city_ext].reject(&:empty?).join(', ')
   end
 end

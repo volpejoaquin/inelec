@@ -1,4 +1,4 @@
-class Contact < ActiveRecord::Base
+class ContactPerson < ActiveRecord::Base
   belongs_to :client
 
   validates :name, presence: true

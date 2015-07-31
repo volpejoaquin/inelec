@@ -2,16 +2,16 @@
 
 one:
   name: MyString
-  lastname: MyString
   phone: MyString
+  position: MyString
   email: MyString
-  charge: MyString
-  client_id: 1
+  decision_maker: false
+  client_id: 
 
 two:
   name: MyString
-  lastname: MyString
   phone: MyString
+  position: MyString
   email: MyString
-  charge: MyString
-  client_id: 1
+  decision_maker: false
+  client_id: 

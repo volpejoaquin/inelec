@@ -31,27 +31,23 @@
   </div>
 
   <div class="col-xs-6">
-    <div ng-show="!client.companies.length">
-      <h4>Organization Members</h4>
+    <div ng-show="!client.contacts.length">
+      <h4>Contactos</h4>
       <ul>
-        <li ng-repeat="member in membersPagination.pagedItems">
-          <span class="glyphicon glyphicon-{{member.has_the_system ? 'ok green' : 'remove red' }}" aria-hidden="true" ng-click="setHasTheSystemForMember(member)" data-title="Click to toggle!" bs-tooltip></span>
-          <a ui-sref="clients.show({ id: member.id })">
-            {{member.name}}
+        <li ng-repeat="contact in contactsPagination.pagedItems">
+          <span class="glyphicon glyphicon-{{contact.has_the_system ? 'ok green' : 'remove red' }}" aria-hidden="true" ng-click="setHasTheSystemForMember(contact)" data-title="Click to toggle!" bs-tooltip></span>
+          <a ui-sref="clients.show({ id: contact.id })">
+            {{contact.name}}
           </a>
         </li>
       </ul>
-      <pagination total-items="membersPagination.totalItems" items-per-page="membersPagination.itemsPerPage" ng-model="membersPagination.currentPage" ng-change="membersPagination.pageChanged()" ng-show="membersPagination.itemsPerPage < membersPagination.totalItems"></pagination>
-      <form name="add_member_form" novalidate class="form member-form form-inline" ng-submit="addMember(member)">
+      <pagination total-items="contactsPagination.totalItems" items-per-page="contactsPagination.itemsPerPage" ng-model="contactsPagination.currentPage" ng-change="contactsPagination.pageChanged()" ng-show="contactsPagination.itemsPerPage < contactsPagination.totalItems"></pagination>
+      <form name="add_contact_form" novalidate class="form contact-form form-inline" ng-submit="addContact(contact)">
         <div class="form-group">
-          <input type="text" class="form-control" ng-model="member" bs-options="member as member.name for member in searchMembers($viewValue)" placeholder="Search for member" bs-typeahead required>
-        </div>
-        <div class="form-group">
-          <input type="checkbox" ng-model="client.has_the_system" name="has_the_system"/>
-          <label for="has_the_system">Has the system?</label>
+          <input type="text" class="form-control" ng-model="contact.name" placeholder="Nombre" required>
         </div>
         <div class="actions form-group">
-          <input type="submit" class="btn btn-success" value="Add" ng-disabled="!add_member_form.$valid"/>
+          <input type="submit" class="btn btn-success" value="Agregar" ng-disabled="!add_contact_form.$valid"/>
         </div>
       </form>
     </div>

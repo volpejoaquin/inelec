@@ -43,6 +43,20 @@ module API
       end
     end
 
+    # POST /add_contact
+    def add_contact
+      params = contact_params
+
+      @contact = Contact.new(contact_params)
+      @contact.client_id = params[:client_id]
+
+      if @contact.save
+        render json: @contact, status: :created
+      else
+        render json: @contact.errors, status: :unprocessable_entity
+      end
+    end
+
     # Gets all possible categories
     def categories
       respond_with Client.categories.collect.with_index { |category, index| {id: index, name: category} }
@@ -62,6 +76,10 @@ module API
       # Never trust parameters from the scary internet, only allow the white list through.
       def client_params
         params.require(:client).permit(:name, :address, :city, :category_id, :postal_code, :phone, :email, :cuit)
+      end
+
+      def contact_params
+        params.require(:contact).permit(:name, :client_id)
       end
 
       def get_clients

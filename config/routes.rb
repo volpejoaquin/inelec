@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :contact_people
+
   with_options defaults: { format: :json } do
     namespace :api do
 
@@ -10,13 +12,9 @@ Rails.application.routes.draw do
           get 'categories'
         end
 
-        # member do
-        #   post 'add_member'
-        #   get 'potential_members'
-        #   post 'add_company'
-        #   get 'potential_companies'
-        #   post 'toggle_has_the_system'
-        # end
+        member do
+          post 'add_contact'
+        end
       end
     end
   end

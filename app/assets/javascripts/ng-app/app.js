@@ -81,6 +81,21 @@ window.Inelec =
                     controller: 'ClientEditCtrl'
                   }
                 }
+              } )
+            .state( 'entryorders', {
+              abstract: true,
+              url: '/clients/:id/entry_orders',
+              controller: 'EntryOrdersCtrl',
+              template: '<ui-view/>'
+            } )
+             .state( 'entryorders.show', {
+                url: '/:entry_order_id',
+                views: {
+                  '': {
+                    templateUrl: 'clients/entry_order/show.html',
+                    controller: 'EntryOrderShowCtrl'
+                  }
+                }
               } );
 
           // Redirect abstract controllers to lists

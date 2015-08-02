@@ -20,9 +20,12 @@ Inelec
       ) {
         'use strict';
 
-        var orderBy = $filter('orderBy');
+        var orderBy = $filter('orderBy'),
+          filter = $filter( 'filter' );
 
-         /**
+        $scope.RestangularClient = Restangular.one( 'clients', $stateParams.id );
+
+        /**
          * Initializes controller
          * @author Joaquin Volpe <joaquin.volpe@woopasoft.com>
          */
@@ -32,6 +35,11 @@ Inelec
 
           // Get orders people
           $scope.getOrders();
+
+          // Watch query field in order to filter results
+          $scope.$watch( 'query', function( newValue, oldValue ) {
+            $scope.order( $scope.predicate, $scope.reverse );
+          } );
         };
 
         /**
@@ -41,7 +49,15 @@ Inelec
          * @author Joaquin Volpe <joaquin.volpe@woopasoft.com>
          */
         $scope.order = function (predicate, reverse) {
-          $scope.pagination.setItems(orderBy($scope.orders, predicate, reverse));
+          $scope.pagination.setItems(
+            orderBy(
+              filter(
+                $scope.orders,
+                $scope.query
+              ),
+            predicate,
+            reverse
+          ));
         };
 
          /**

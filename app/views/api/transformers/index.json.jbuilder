@@ -1,0 +1,1 @@
+json.array! @transformers, partial: 'transformer', as: :transformer

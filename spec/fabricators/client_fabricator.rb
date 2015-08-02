@@ -9,7 +9,7 @@ Fabricator(:client) do
   cuit { Faker::Company.duns_number }
 
   after_build do |client|
-    2.times.map { Fabricate(:contact_person, :client => client) }
-    4.times.map { Fabricate(:entry_order, :client => client) }
+    Random.rand(8).times.map { Fabricate(:contact_person, :client => client) }
+    Random.rand(8).times.map { Fabricate(:entry_order, :client => client) }
   end
 end

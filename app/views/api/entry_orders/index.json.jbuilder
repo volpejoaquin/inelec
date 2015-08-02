@@ -1,3 +1,1 @@
-json.array!(@entry_orders) do |order|
-  json.extract! order, :id, :number, :datetime, :comments
-end
+json.array! @entry_orders, partial: 'entry_order', as: :entry_order

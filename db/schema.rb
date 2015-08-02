@@ -83,15 +83,11 @@ ActiveRecord::Schema.define(version: 20150731153622) do
     t.string   "number"
     t.integer  "diagnostic"
     t.text     "comments"
-    t.integer  "record_id"
     t.integer  "entry_order_id"
-    t.integer  "exit_order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "transformers", ["entry_order_id"], name: "index_transformers_on_entry_order_id"
-  add_index "transformers", ["exit_order_id"], name: "index_transformers_on_exit_order_id"
-  add_index "transformers", ["record_id"], name: "index_transformers_on_record_id"
 
 end

@@ -1,23 +1,36 @@
 <div class="row">
   <div class="col-xs-12">
+    <form name="entry_order_quick_search" novalidate class="form quick-search-form form-inline">
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="$parent.query" ng-model-options="{ debounce: 100 }" placeholder="Buscar remito"/>
+      </div>
+    </form>
+
     <table class="table nospace table-striped">
       <thead>
         <tr>
           <th  class="text-center">
             <a href="" ng-click="reverse=!reverse;order('number', reverse)">
               <i class="fa fa-bookmark-o"></i>
+              Numero
             </a>
           </th>
           <th><a href="" ng-click="reverse=!reverse;order('datetime', reverse)">Fecha</a></th>
           <th>Comentarios</th>
+          <th>Transformadores</th>
         </tr>
       </thead>
 
       <tbody>
         <tr ng-repeat="order in pagination.pagedItems">
-          <td class="text-center">{{order.number}}</td>
+          <td class="text-center">
+            <a ui-sref="entryorders.show({ client_id: client.id, id: order.id })">
+              {{order.number}}
+            </a>
+          </td>
           <td>{{order.datetime}}</td>
           <td>{{order.comments}}</td>
+          <td>{{order.transformers.length}}</td>
         </tr>
       </tbody>
     </table>

@@ -7,9 +7,9 @@ class CreateTransformers < ActiveRecord::Migration
       t.integer :diagnostic
       t.text :comments
 
-      t.references :record, index: true
+      # t.references :record, index: true
       t.references :entry_order, index: true
-      t.references :exit_order, index: true
+      # t.references :exit_order, index: true
 
       t.timestamps
     end

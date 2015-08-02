@@ -3,29 +3,21 @@
     <table class="table nospace table-striped">
       <thead>
         <tr>
-          <th  class="text-center"><span class="fa fa-user"></span></th>
-          <th><a href="" ng-click="reverse=!reverse;order('name', reverse)">Nombre</a></th>
-          <th>Correo electronico</th>
-          <th>Telefono</th>
-          <th>Puesto</th>
-          <th class="text-center" colspan="1"></th>
+          <th  class="text-center">
+            <a href="" ng-click="reverse=!reverse;order('number', reverse)">
+              <i class="fa fa-bookmark-o"></i>
+            </a>
+          </th>
+          <th><a href="" ng-click="reverse=!reverse;order('datetime', reverse)">Fecha</a></th>
+          <th>Comentarios</th>
         </tr>
       </thead>
 
       <tbody>
-        <tr ng-repeat="contact in pagination.pagedItems">
-          <td class="text-center">
-            <span class="fa" ng-class="contact.decision_maker ? 'fa-user-md blue-dark' : 'fa-user gray-dark'"></span>
-          </td>
-          <td>{{contact.name}}</td>
-          <td>{{contact.email}}</td>
-          <td>{{contact.phone}}</td>
-          <td>{{contact.position}}</td>
-          <td class="text-center">
-            <a ui-sref="clients.show.contact_people.show({ id: client.id, person_id: contact.id })">
-              <span class="glyphicon glyphicon-pencil orange" aria-hidden="true"></span>
-            </a>
-          </td>
+        <tr ng-repeat="order in pagination.pagedItems">
+          <td class="text-center">{{order.number}}</td>
+          <td>{{order.datetime}}</td>
+          <td>{{order.comments}}</td>
         </tr>
       </tbody>
     </table>
@@ -36,26 +28,20 @@
 <hr/>
 <div class="row">
   <div class="col-xs-12">
-    <form name="add_contact_form" novalidate class="form contact-form form-inline" ng-controller="ContactAddCtrl" ng-submit="saveContact(contact)">
-      <div class="form-group has-feedback" ng-class="{ 'has-error' : (add_contact_form.$submitted || add_contact_form.name.$touched) && add_contact_form.name.$error.required }">
-        <input type="text" class="form-control" placeholder="Name" ng-model="contact.name" name="name" required/>
-        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-class="{ 'hidden' : !((add_contact_form.$submitted ||  add_contact_form.name.$touched) && add_contact_form.name.$error.required) }"></span>
+    <h4>Agregar remito de ingreso</h4>
+    <form name="add_entry_order_form" novalidate class="form order-form" ng-controller="EntryOrderAddCtrl" ng-submit="saveOrder(order)">
+      <div class="form-group has-feedback" ng-class="{ 'has-error' : (add_entry_order_form.$submitted || add_entry_order_form.number.$touched) && add_entry_order_form.number.$error.required }">
+        <input type="text" class="form-control" placeholder="Numero" ng-model="order.number" name="number" required/>
+        <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true" ng-class="{ 'hidden' : !((add_entry_order_form.$submitted ||  add_entry_order_form.number.$touched) && add_entry_order_form.number.$error.required) }"></span>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Correo electronico" ng-model="contact.email" name="email"/>
+        <input type="text" class="form-control" placeholder="Fecha" ng-model="order.datetime" name="datetime"/>
       </div>
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Telefono" ng-model="contact.phone" name="phone"/>
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Puesto" ng-model="contact.position" name="phone"/>
-      </div>
-      <div class="form-group">
-        <input type="checkbox" ng-model="contact.decision_maker" name="decision_maker"/>
-        <label for="decision_maker">Toma decisiones?</label>
+        <textarea class="form-control" placeholder="Comentarios" ng-model="order.comments" name="comments"></textarea>
       </div>
       <div class="actions form-group">
-        <input type="submit" class="btn btn-success" value="Agregar" ng-disabled="!add_contact_form.$valid"/>
+        <input type="submit" class="btn btn-success" value="Agregar" ng-disabled="!add_entry_order_form.$valid"/>
       </div>
     </form>
   </div>

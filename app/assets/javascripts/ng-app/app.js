@@ -66,7 +66,7 @@ window.Inelec =
                   },
                   'exit-orders@clients.show': {
                     templateUrl: 'clients/exit-orders/list.html',
-                    controller: 'ExitOrdersCtrl'
+                    controller: 'EntryOrdersCtrl'
                   }
                 }
               } )

@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150731153622) do
   add_index "diagnostics", ["transformer_id"], name: "index_diagnostics_on_transformer_id"
 
   create_table "entry_orders", force: true do |t|
-    t.datetime "date"
+    t.datetime "datetime"
     t.integer  "number"
     t.text     "comments"
     t.integer  "client_id"
@@ -61,10 +61,10 @@ ActiveRecord::Schema.define(version: 20150731153622) do
   add_index "entry_orders", ["client_id"], name: "index_entry_orders_on_client_id"
 
   create_table "exit_orders", force: true do |t|
-    t.datetime "date"
+    t.datetime "datetime"
     t.integer  "number"
-    t.integer  "client_id"
     t.text     "comments"
+    t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

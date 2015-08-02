@@ -38,7 +38,6 @@ Inelec
             $scope.client = client;
             // Paginate contacts
             $scope.contactPeoplePagination = paginatedList( client.contact_people );
-            console.log($scope.contactPeoplePagination);
           } );
         };
 

@@ -1,7 +1,7 @@
 class CreateEntryOrders < ActiveRecord::Migration
   def change
     create_table :entry_orders do |t|
-      t.datetime :date
+      t.datetime :datetime
       t.integer :number
       t.text :comments
 

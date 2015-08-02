@@ -1,10 +1,10 @@
 Inelec
   /**
-   * Main contact orders controller
+   * Main entry orders controller
    * @author Joaquin Volpe <joaquin.volpe@woopasoft.com>
    */
   .controller(
-    'OrdersCtrl',
+    'EntryOrdersCtrl',
     [
       '$scope',
       '$filter',
@@ -27,11 +27,11 @@ Inelec
          * @author Joaquin Volpe <joaquin.volpe@woopasoft.com>
          */
         $scope.init = function () {
-          // Create pagination service for contacts list
+          // Create pagination service for orders list
           $scope.pagination = paginatedList();
 
-          // Get contact people
-          $scope.getContacts();
+          // Get orders people
+          $scope.getOrders();
         };
 
         /**
@@ -41,17 +41,17 @@ Inelec
          * @author Joaquin Volpe <joaquin.volpe@woopasoft.com>
          */
         $scope.order = function (predicate, reverse) {
-          $scope.pagination.setItems(orderBy($scope.contacts, predicate, reverse));
+          $scope.pagination.setItems(orderBy($scope.orders, predicate, reverse));
         };
 
          /**
-         * Gets all contact people and refreshes view
+         * Gets all orders refreshes view
          * @author Joaquin Volpe <joaquin.volpe@woopasoft.com>
          */
-        $scope.getContacts = function () {
-          $scope.RestangularClient.getList('contact_people').then(function(contacts) {
-            $scope.contacts = contacts;
-            $scope.order('name', false);
+        $scope.getOrders = function () {
+          $scope.RestangularClient.getList('entry_orders').then(function(orders) {
+            $scope.orders = orders;
+            $scope.order('number', false);
           });
         };
 

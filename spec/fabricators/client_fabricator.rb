@@ -7,4 +7,9 @@ Fabricator(:client) do
   phone { Faker::PhoneNumber.cell_phone }
   email { Faker::Internet.email }
   cuit { Faker::Company.duns_number }
+
+  after_build do |client|
+    2.times.map { Fabricate(:contact_person, :client => client) }
+    4.times.map { Fabricate(:entry_order, :client => client) }
+  end
 end

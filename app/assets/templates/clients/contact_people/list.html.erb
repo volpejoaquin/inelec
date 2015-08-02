@@ -36,6 +36,7 @@
 <hr/>
 <div class="row">
   <div class="col-xs-12">
+    <h4>Agregar contacto</h4>
     <form name="add_contact_form" novalidate class="form contact-form form-inline" ng-controller="ContactAddCtrl" ng-submit="saveContact(contact)">
       <div class="form-group has-feedback" ng-class="{ 'has-error' : (add_contact_form.$submitted || add_contact_form.name.$touched) && add_contact_form.name.$error.required }">
         <input type="text" class="form-control" placeholder="Name" ng-model="contact.name" name="name" required/>

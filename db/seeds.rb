@@ -6,6 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-10.times { Fabricate(:client) }
-
-10.times { Fabricate(:contact_person) }
+5.times { Fabricate(:client) }

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
       resources :clients do
         resources :contact_people
+        resources :entry_orders
 
         collection do
           get 'categories'

@@ -60,9 +60,13 @@ window.Inelec =
                     templateUrl: 'clients/contact_people/list.html',
                     controller: 'ContactPeopleCtrl'
                   },
-                  'visits@clients.show': {
-                    templateUrl: 'clients/visits.html',
-                    controller: 'VisitsCtrl'
+                  'entry-orders@clients.show': {
+                    templateUrl: 'clients/entry-orders/list.html',
+                    controller: 'EntryOrdersCtrl'
+                  },
+                  'exit-orders@clients.show': {
+                    templateUrl: 'clients/exit-orders/list.html',
+                    controller: 'ExitOrdersCtrl'
                   }
                 }
               } )

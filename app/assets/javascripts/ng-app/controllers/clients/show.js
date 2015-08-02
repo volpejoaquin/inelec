@@ -36,9 +36,9 @@ Inelec
         $scope.getClient = function() {
           $scope.RestangularClient.get().then( function( client ) {
             $scope.client = client;
-            $scope.contacts = client.contacts;
             // Paginate contacts
-            $scope.contactsPagination = paginatedList( client.contacts );
+            $scope.contactPeoplePagination = paginatedList( client.contact_people );
+            console.log($scope.contactPeoplePagination);
           } );
         };
 

@@ -5,10 +5,11 @@
     <i class="fa fa-pencil orange"></i>
   </a>
 </h1>
+
 <hr/>
 
 <div class="row client-information">
-  <div class="col-xs-4">
+  <div class="col-xs-6">
 
     <ul class="fa-ul">
       <li>
@@ -33,115 +34,14 @@
     </ul>
 
   </div>
-
-  <div class="col-xs-8 client-contact">
-    <div>
-      <h4>Contactos</h4>
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="contact_person in client.contact_people">
-
-          <div class="row">
-            <div class="col-xs-3">
-              <i class="fa fa-user gray-dark"></i>
-              <a ui-sref="clients.show({ id: contact_person.id })">
-                {{contact_person.name}}
-              </a>
-            </div>
-
-            <div class="col-xs-4">
-              <i class="fa fa-envelope-o gray-dark pull-left"></i>
-              {{contact_person.email}}
-            </div>
-
-            <div class="col-xs-2">
-              <i class="fa fa-phone gray-dark"></i>
-              {{contact_person.position}}
-            </div>
-
-            <div class="col-xs-3">
-              <i class="fa fa-phone gray-dark"></i>
-              {{contact_person.phone}}
-            </div>
-          </div>
-
-        </li>
-
-        <li class="list-group-item">
-          <form name="add_contact_form" novalidate class="form contact-form" ng-controller="ContactAddCtrl" ng-submit="saveContact(contact)">
-            <div class="row">
-              <div class="col-xs-3">
-                <div class="from-group">
-                  <input type="text" class="form-control" ng-model="contact.name" placeholder="Nombre" required>
-                </div>
-              </div>
-
-              <div class="col-xs-3">
-                <div class="from-group">
-                  <input type="text" class="form-control" ng-model="contact.email" placeholder="Correo electronico">
-                </div>
-              </div>
-
-              <div class="col-xs-3">
-                <div class="from-group">
-                  <input type="text" class="form-control" ng-model="contact.position" placeholder="Puesto">
-                </div>
-              </div>
-
-              <div class="col-xs-3">
-                <div class="from-group">
-                  <input type="text" class="form-control" ng-model="contact.phone" placeholder="Telefono">
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-9">
-
-                <div class="from-group">
-                  <input type="checkbox" class="form-control" ng-model="contact.decision_maker">
-                </div>
-              </div>
-
-              <div class="col-xs-3">
-                <div class="actions">
-                  <input type="submit" class="btn btn-success" value="Agregar" ng-disabled="!add_contact_form.$valid"/>
-                </div>
-              </div>
-            </div>
-          </form>
-        </li>
-      </ul>
-    </div>
-
-    <hr ng-if="!client.companies.length"/>
-
-    <div ng-show="!client.members.length">
-      <h4>Belongs to</h4>
-      <ul>
-        <li ng-repeat="company in companiesPagination.pagedItems">
-          <span class="glyphicon glyphicon-{{company.has_the_system  ? 'ok green' : 'remove red' }}" aria-hidden="true" ng-click="setHasTheSystemForCompany(company)" data-title="Click to toggle!" bs-tooltip></span>
-          <a ui-sref="clients.show({ id: company.id })">
-            {{company.name}}
-          </a>
-        </li>
-      </ul>
-      <pagination total-items="companiesPagination.totalItems" items-per-page="companiesPagination.itemsPerPage" ng-model="companiesPagination.currentPage" ng-change="companiesPagination.pageChanged()" ng-show="companiesPagination.itemsPerPage < companiesPagination.totalItems"></pagination>
-      <form name="add_company_form" novalidate class="form company-form form-inline" ng-submit="addCompany(company)">
-        <div class="form-group">
-          <input type="text" class="form-control" ng-model="company" bs-options="company as company.name for company in searchCompanies($viewValue)" placeholder="Search for company" bs-typeahead required>
-        </div>
-        <div class="actions form-group">
-          <input type="submit" class="btn btn-success" value="Add" ng-disabled="!add_company_form.$valid"/>
-        </div>
-      </form>
-    </div>
-  </div>
 </div>
 
 <hr/>
 <div bs-tabs>
-  <!-- <div ui-view="visits" title="Visits" bs-pane>
+  <div ui-view="entry-orders" title="Remitos de ingreso" bs-pane>
   </div>
-  <div ui-view="contact-people" title="ContactPerson" bs-pane>
-  </div> -->
+  <div ui-view="exit-orders" title="Remitos de salida" bs-pane>
+  </div>
+  <div ui-view="contact-people" title="Contactos" bs-pane>
+  </div>
 </div>

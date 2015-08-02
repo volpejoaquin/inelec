@@ -38,15 +38,14 @@ Inelec
          * @author Joaquin Volpe <joaquin.volpe@woopasoft.com>
          */
         $scope.saveContact = function(contact) {
-          console.log($scope.client.contact_people);
           // Create new contact
-          $scope.client.post('contact_people', {contact_person: contact}).then(function() {
+          $scope.contacts.post({contact_person: contact}).then(function() {
             // Clear form
             $scope.contact = {};
             $scope.add_contact_form.$setPristine();
             $scope.add_contact_form.$setUntouched();
             // Refresh view
-            $scope.getClient();
+            $scope.getContacts();
           });
         };
 

@@ -55,7 +55,15 @@ Inelec
          * @author Joaquin Volpe <joaquin.volpe@woopasoft.com>
          */
         $scope.order = function( predicate, reverse ) {
-          $scope.pagination.setItems( orderBy( filter( $scope.clients, { name: $scope.query } ), predicate, reverse ));
+          $scope.pagination.setItems(
+            orderBy(
+              filter(
+                $scope.clients,
+                $scope.query
+              ),
+            predicate,
+            reverse
+          ));
         };
 
         /**

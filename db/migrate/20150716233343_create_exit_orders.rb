@@ -6,6 +6,8 @@ class CreateExitOrders < ActiveRecord::Migration
       t.integer :client_id
       t.text :comments
 
+      t.references :client, index: true
+
       t.timestamps
     end
   end

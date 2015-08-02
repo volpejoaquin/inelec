@@ -56,3 +56,9 @@ gem 'angular-rails-templates'
 
 # CSRF validation for angularJS calls
 gem 'angular_rails_csrf'
+
+# Use faker
+gem 'faker'
+
+# Use fabrication
+gem 'fabrication'

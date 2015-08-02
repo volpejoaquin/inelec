@@ -43,18 +43,11 @@ module API
       end
     end
 
-    # POST /add_contact
-    def add_contact
-      params = contact_params
-
-      @contact = Contact.new(contact_params)
-      @contact.client_id = params[:client_id]
-
-      if @contact.save
-        render json: @contact, status: :created
-      else
-        render json: @contact.errors, status: :unprocessable_entity
-      end
+    # PATCH/DELETE /clients/1.json
+    def destroy
+      @client = Client.find(params[:id])
+      # @client.destroy
+      render json: @client, status: :created
     end
 
     # Gets all possible categories
@@ -76,10 +69,6 @@ module API
       # Never trust parameters from the scary internet, only allow the white list through.
       def client_params
         params.require(:client).permit(:name, :address, :city, :category_id, :postal_code, :phone, :email, :cuit)
-      end
-
-      def contact_params
-        params.require(:contact).permit(:name, :client_id)
       end
 
       def get_clients

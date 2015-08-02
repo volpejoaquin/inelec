@@ -1,8 +1,7 @@
 class Client < ActiveRecord::Base
   CATEGORY = ['Cooperativas', 'Privadas', 'Otros']
 
-  has_many :contacts
-  belongs_to :category
+  has_many :contact_people
 
   validates :name, presence: true
   validates_inclusion_of :category_id, in: (0..CATEGORY.length - 1).to_a, allow_nil: true

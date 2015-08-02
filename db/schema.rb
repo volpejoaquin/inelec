@@ -47,14 +47,18 @@ ActiveRecord::Schema.define(version: 20150731153622) do
     t.datetime "updated_at"
   end
 
+  add_index "diagnostics", ["transformer_id"], name: "index_diagnostics_on_transformer_id"
+
   create_table "entry_orders", force: true do |t|
     t.datetime "date"
     t.integer  "number"
-    t.integer  "client_id"
     t.text     "comments"
+    t.integer  "client_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "entry_orders", ["client_id"], name: "index_entry_orders_on_client_id"
 
   create_table "exit_orders", force: true do |t|
     t.datetime "date"
@@ -64,6 +68,8 @@ ActiveRecord::Schema.define(version: 20150731153622) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "exit_orders", ["client_id"], name: "index_exit_orders_on_client_id"
 
   create_table "records", force: true do |t|
     t.string   "name"
@@ -75,13 +81,17 @@ ActiveRecord::Schema.define(version: 20150731153622) do
     t.string   "mark"
     t.string   "power"
     t.string   "number"
-    t.integer  "record_id"
     t.integer  "diagnostic"
     t.text     "comments"
+    t.integer  "record_id"
     t.integer  "entry_order_id"
     t.integer  "exit_order_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "transformers", ["entry_order_id"], name: "index_transformers_on_entry_order_id"
+  add_index "transformers", ["exit_order_id"], name: "index_transformers_on_exit_order_id"
+  add_index "transformers", ["record_id"], name: "index_transformers_on_record_id"
 
 end

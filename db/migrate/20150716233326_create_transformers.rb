@@ -4,11 +4,12 @@ class CreateTransformers < ActiveRecord::Migration
       t.string :mark
       t.string :power
       t.string :number
-      t.integer :record_id
       t.integer :diagnostic
       t.text :comments
-      t.integer :entry_order_id
-      t.integer :exit_order_id
+
+      t.references :record, index: true
+      t.references :entry_order, index: true
+      t.references :exit_order, index: true
 
       t.timestamps
     end

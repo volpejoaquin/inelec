@@ -6,6 +6,7 @@ class CreateContactPeople < ActiveRecord::Migration
       t.string :position
       t.string :email
       t.boolean :decision_maker
+
       t.references :client, index: true
 
       t.timestamps

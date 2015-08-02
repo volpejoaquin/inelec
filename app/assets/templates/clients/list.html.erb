@@ -1,18 +1,19 @@
-<h1>Clients</h1>
+<h1>Clientes</h1>
 
 <div class="row">
   <div class="col-xs-12">
     <form name="client_quick_search" novalidate class="form quick-search-form form-inline">
       <div class="form-group">
-        <input type="text" class="form-control" ng-model="$parent.query" ng-model-options="{ debounce: 100 }"/>
+        <input type="text" class="form-control" ng-model="$parent.query" ng-model-options="{ debounce: 100 }" placeholder="Buscar cliente"/>
       </div>
     </form>
+    {{predicate}}
     <table class="table nospace table-striped">
       <thead>
         <tr>
           <th colspan="1" class="text-center">
-            <a href="" ng-click="reverse=!reverse;order('has_the_system', reverse)">
-              <span class="glyphicon glyphicon-ok green" aria-hidden="true">
+            <a href="">
+              <i class="fa fa-building-o" title="Categoria"></i>
               </span>
             </a>
           </th>
@@ -28,12 +29,10 @@
       <tbody>
         <tr ng-repeat="client in pagination.pagedItems">
           <td class="text-center">
-            <span class="glyphicon" ng-class="{ 'glyphicon-ok green' : !!client.has_the_system, 'glyphicon-remove red' : !client.has_the_system }" aria-hidden="true">
-            </span>
+            <i class="fa fa-building-o" ng-class="{ 'green' : client.category.id === 0, 'red' : client.category.id === 1, 'blue' : client.category.id === 2 }" title="{{client.category.name}}"></i>
           </td>
           <td>
             <a ui-sref="clients.show({ id: client.id })">
-              <span class="glyphicon glyphicon-home" aria-hidden="true" ng-if="!!client.members.length"></span>
               {{client.name}}
             </a>
           </td>
@@ -42,8 +41,8 @@
           <td>{{client.cuit}}</td>
           <td>{{client.email}}</td>
           <td class="text-center">
-            <a ui-sref="clients.edit({ id: client.id })">
-              <span class="glyphicon glyphicon-pencil orange" aria-hidden="true"></span>
+            <a ui-sref="clients.edit({ id: client.id })" title="Editar">
+              <i class="fa fa-pencil orange"></i>
             </a>
           </td>
         </tr>

@@ -1,19 +1,13 @@
 Rails.application.routes.draw do
-  resources :contact_people
 
   with_options defaults: { format: :json } do
     namespace :api do
 
-      resources :clients, except: :destroy do
-        # resources :visits, except: :destroy
-        # resources :contact_people
+      resources :clients do
+        resources :contact_people
 
         collection do
           get 'categories'
-        end
-
-        member do
-          post 'add_contact'
         end
       end
     end

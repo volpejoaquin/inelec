@@ -2,54 +2,115 @@
   <span class="glyphicon glyphicon-home" aria-hidden="true" ng-if="!!client.members.length"></span>
   {{client.name}}
   <a ui-sref="clients.edit({ id: client.id })">
-    <small class="glyphicon glyphicon-pencil orange"></small>
+    <i class="fa fa-pencil orange"></i>
   </a>
 </h1>
 <hr/>
 
-<div class="row">
-  <div class="col-xs-6">
-    <p>
-      <strong>Direccion:</strong>
-      {{client.address_ext}}
-    </p>
+<div class="row client-information">
+  <div class="col-xs-4">
 
-    <p>
-      <strong>Telefono:</strong>
-      {{client.phone}}
-    </p>
+    <ul class="fa-ul">
+      <li>
+        <i class="fa-li fa fa-map-marker fa-lg gray-dark"></i>
+        {{client.address_ext}}
+      </li>
 
-    <p>
-      <strong>Email:</strong>
-      {{client.email}}
-    </p>
+      <li>
+        <i class="fa-li fa fa-phone fa-lg gray-dark"></i>
+        {{client.phone}}
+      </li>
 
-    <p>
-      <strong>Categoria:</strong>
-      {{client.category.name}}
-    </p>
+      <li>
+        <i class="fa-li fa fa-envelope-o fa-lg gray-dark"></i>
+        {{client.email}}
+      </li>
+
+      <li>
+        <i class="fa-li fa fa-building-o fa-lg" ng-class="{ 'green' : client.category.id === 0, 'red' : client.category.id === 1, 'blue' : client.category.id === 2 }" title="{{client.category.name}}"></i>
+        {{client.category.name}}
+      </li>
+    </ul>
+
   </div>
 
-  <div class="col-xs-6">
-    <div ng-show="!client.contacts.length">
+  <div class="col-xs-8 client-contact">
+    <div>
       <h4>Contactos</h4>
-      <ul>
-        <li ng-repeat="contact in contactsPagination.pagedItems">
-          <span class="glyphicon glyphicon-{{contact.has_the_system ? 'ok green' : 'remove red' }}" aria-hidden="true" ng-click="setHasTheSystemForMember(contact)" data-title="Click to toggle!" bs-tooltip></span>
-          <a ui-sref="clients.show({ id: contact.id })">
-            {{contact.name}}
-          </a>
+      <ul class="list-group">
+        <li class="list-group-item" ng-repeat="contact_person in client.contact_people">
+
+          <div class="row">
+            <div class="col-xs-3">
+              <i class="fa fa-user gray-dark"></i>
+              <a ui-sref="clients.show({ id: contact_person.id })">
+                {{contact_person.name}}
+              </a>
+            </div>
+
+            <div class="col-xs-4">
+              <i class="fa fa-envelope-o gray-dark pull-left"></i>
+              {{contact_person.email}}
+            </div>
+
+            <div class="col-xs-2">
+              <i class="fa fa-phone gray-dark"></i>
+              {{contact_person.position}}
+            </div>
+
+            <div class="col-xs-3">
+              <i class="fa fa-phone gray-dark"></i>
+              {{contact_person.phone}}
+            </div>
+          </div>
+
+        </li>
+
+        <li class="list-group-item">
+          <form name="add_contact_form" novalidate class="form contact-form" ng-controller="ContactAddCtrl" ng-submit="saveContact(contact)">
+            <div class="row">
+              <div class="col-xs-3">
+                <div class="from-group">
+                  <input type="text" class="form-control" ng-model="contact.name" placeholder="Nombre" required>
+                </div>
+              </div>
+
+              <div class="col-xs-3">
+                <div class="from-group">
+                  <input type="text" class="form-control" ng-model="contact.email" placeholder="Correo electronico">
+                </div>
+              </div>
+
+              <div class="col-xs-3">
+                <div class="from-group">
+                  <input type="text" class="form-control" ng-model="contact.position" placeholder="Puesto">
+                </div>
+              </div>
+
+              <div class="col-xs-3">
+                <div class="from-group">
+                  <input type="text" class="form-control" ng-model="contact.phone" placeholder="Telefono">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xs-9">
+
+                <div class="from-group">
+                  <input type="checkbox" class="form-control" ng-model="contact.decision_maker">
+                </div>
+              </div>
+
+              <div class="col-xs-3">
+                <div class="actions">
+                  <input type="submit" class="btn btn-success" value="Agregar" ng-disabled="!add_contact_form.$valid"/>
+                </div>
+              </div>
+            </div>
+          </form>
         </li>
       </ul>
-      <pagination total-items="contactsPagination.totalItems" items-per-page="contactsPagination.itemsPerPage" ng-model="contactsPagination.currentPage" ng-change="contactsPagination.pageChanged()" ng-show="contactsPagination.itemsPerPage < contactsPagination.totalItems"></pagination>
-      <form name="add_contact_form" novalidate class="form contact-form form-inline" ng-submit="addContact(contact)">
-        <div class="form-group">
-          <input type="text" class="form-control" ng-model="contact.name" placeholder="Nombre" required>
-        </div>
-        <div class="actions form-group">
-          <input type="submit" class="btn btn-success" value="Agregar" ng-disabled="!add_contact_form.$valid"/>
-        </div>
-      </form>
     </div>
 
     <hr ng-if="!client.companies.length"/>
@@ -81,6 +142,6 @@
 <div bs-tabs>
   <!-- <div ui-view="visits" title="Visits" bs-pane>
   </div>
-  <div ui-view="contact-people" title="Contacts" bs-pane>
+  <div ui-view="contact-people" title="ContactPerson" bs-pane>
   </div> -->
 </div>

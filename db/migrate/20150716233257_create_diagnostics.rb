@@ -3,7 +3,8 @@ class CreateDiagnostics < ActiveRecord::Migration
     create_table :diagnostics do |t|
       t.datetime :date
       t.text :comments
-      t.integer :transformer_id
+
+      t.references :transformer, index: true
 
       t.timestamps
     end
